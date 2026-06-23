@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>ShoppingCart</title>
+</head>
+<body>
+    <!-- NAVBAR SECTION -->
+     <header>
+    <div class="navbar">
+            <div class="logo">
+                <h2 >🛒Smart<span>Cart</span></h2>
+            </div>
+        <div class="navbar-list">
+            <nav>
+                <ul>
+                    <li><a class="btn" href="#">Home</a></li>
+                    <li><a class="btn" href="history.html">History</a></li>
+                    <li><a class="btn" href="#">Setting</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+     </header>
+     <!-- HERO SECTION -->
+      <section id="Hero">
+        <div class="heading-container">
+            <div class="heading-hero">
+                <h1>Your Shopping List</h1>
+                <p>Manage items, track spending, stay within budget</p>
+            </div>
+            <div class="heading-budget-limit">
+                    <p class="budget-text">BUDGET LIMIT :</p>
+                    <p id="budget-text" class="budget-amount">Rs 0</p>
+                    <span id="budget-warning-percentage" class="budget-warning">0</span>
+            </div>
+        </div>
+        
+      </section>
+      <!-- MAIN SECTION -->
+      <main>
+        <div class="main-container">
+        <!-- LEFT PANEL -->
+        <section class="left-section">
+            <div class="left-panel">
+            <div class="add-item">
+                <h3>ADD NEW ITEM</h3>
+                <div class="item-details">
+                    <label for="item-name">ITEM NAME</label>
+                    <input type="text" name="item" id="item-name" placeholder="e.g. Milk, Shampo,T-Shirt...">
+                </div>
+                <div class="item-details">
+                    <label for="item-quantity">QUANTITY</label>
+                    <input type="number" name="quantity" id="item-quantity" placeholder="Qty e.g.2">
+                <div class="item-details">
+                    <label for="item-price">PRICE</label>
+                    <input type="number" name="price" id="item-price" placeholder="Price e.g.250">
+                
+                </div> 
+                 <div class="item-details">
+                    <label for="item-price">Set Budget</label>
+                    <input type="number" name="budget" id="budget-limit" placeholder="Rs 4000">
+                
+                </div>                    
+                    </div>
+                <div class="item-details">
+                        <p>CATEGORY </p>
+                            <div class="category-button">
+                                <button  value="all" class="btn btn-primary btn-category">All</button>
+                                <button  value="grocery" class="btn btn-primary btn-category">🥕Grocery</button>
+                                <button  value="home" class="btn btn-primary btn-category">🏠Home</button>
+                                <button  value="clothing" class="btn btn-primary btn-category">🥼Clothing</button>
+                                <button  value="health" class="btn btn-primary btn-category">💊Health</button>
+                                <button  value="electronics" class="btn btn-primary btn-category">⚡Electronics</button>
+                            </div>
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-secondary" id="addtolist">➕ADD TO LIST</button>
+                </div>
+            </div>
+            
+            <div class="search-item">
+                <h3>SEARCH & FILTER</h3>
+                <div class="search-filter-item">
+                    <input type="text" name="searched" id="search-item-name" placeholder="🔍 Search items by name...">
+                </div>
+                <!-- DROP DOWN LIST -->
+                <div class="search-item-list">
+                    <select class="dropdown" name="sort" id="sort-dropdown">
+                        <option disabled selected value="">Sort By</option>
+                        <option value="name">Name</option>
+                        <option value="price">Price</option>
+                        <option value="category">Category</option>
+
+                    </select>
+
+                                        <div class="search-button">
+                        <button id="search-item-btn" class="btn btn-secondary">🔍Search</button>
+                    </div>    
+                </div>
+            </div>
+            <div class="quick-stats">
+                <h3>QUICK STATS</h3>
+                    <p class="stat-row">
+                        <span class="stat-key">Total Items</span>
+                        <span id="total-text" class="stat-value">0</span>
+                    </p>
+
+                    <p class="stat-row">
+                        <span class="stat-key">Bought</span>
+                        <span id="bought-text" class="stat-value">0</span>
+                    </p>
+
+                    <p class="stat-row">
+                        <span class="stat-key">Remaining</span>
+                        <span id="remaining-text" class="stat-value">0</span>
+                    </p>
+                    <p class="stat-row">
+                        <span class="bold-key">Total Bill</span>
+                        <span id="total-bill-text" class="bold-stat">Rs 0</span>
+                    </p>
+            </div>
+        </div>
+        </section>
+        
+        <!-- RIGHT PANEL -->
+         <section>
+        <div class="right-panel">
+            <div class="heading-right-panel">
+                <div class="heading">
+                    <h3>Your Shopping List</h3>
+                </div>
+                <div class="small-buttons">
+                    <button class="btn btn-tertiary">Sort All</button>
+                    <button class="btn btn-tertiary">Clear Bought</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="table-of-items">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                           
+                    </tbody>
+                </table>
+            </div>   
+        
+        <div class="summary-card">
+            <div class="card card-1">
+                <h3>Total Bill</h3>
+                <p><span id="total-amount">0</span></p>
+                <p>Out of Rs 0</p>
+
+            </div>
+          <div class="card card-2">
+            <h3>Most Expensive</h3>
+            <p><span id="most-expensive-price">Rs 0</span></p>
+            <p id="most-expensive-name">No items yet</p>
+        </div>
+        <div class="card card-2">
+            <h3>Cheapest Item</h3>
+            <p><span id="cheapest-price">Rs 0</span></p>
+            <p id="cheapest-name">No items yet</p>
+        </div>
+        <div class="card card-2">
+            <h3>Item Bought</h3>
+            <p><span id="bought-count-card">0</span></p>
+            <p id="pending-count-card">0 still pending</p>
+        </div>
+        </div>
+        <div class="progress-bar-div">
+            <p class="bar-heading">
+                <span>📊BUDGET USED</span>
+                <span id="budget-used-text">0% used</span>
+            </p>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-bar"></div>
+            </div>
+            <p class="bottom-bar">
+                <span>Rs 0</span>
+                <span>Warning at 0</span>
+                <span>Limit</span>
+            </p>
+        </div>
+    </div>
+         </section>
+    </div>
+      </main>
+      <script src="app.js"></script>
+</body>
+</html>
