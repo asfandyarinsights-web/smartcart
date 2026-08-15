@@ -1,201 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
-    <title>ShoppingCart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartCart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <!-- NAVBAR SECTION -->
-     <header>
-    <div class="navbar">
-            <div class="logo">
-                <h2 >🛒Smart<span>Cart</span></h2>
-            </div>
-        <div class="navbar-list">
-            <nav>
-                <ul>
-                    <li><a class="btn" href="#">Home</a></li>
-                    <li><a class="btn" href="history.html">History</a></li>
-                    <li><a class="btn" href="#">Setting</a></li>
-                </ul>
-            </nav>
-        </div>
+
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <h1 class="logo">🛒 Smart<span>Cart</span></h1>
+    <nav>
+      <ul>
+        <li><a class="navlink is-active" href="#">Home</a></li>
+        <li><a class="navlink" href="history.html">History</a></li>
+        <li><a class="navlink" href="#">Setting</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- RECEIPT CARD -->
+  <section class="receipt">
+
+    <div class="receipt-head">
+      <p class="receipt-title">Shopping List</p>
+      <p class="receipt-sub">Manage items, track spending, stay on budget</p>
     </div>
-     </header>
-     <!-- HERO SECTION -->
-      <section id="Hero">
-        <div class="heading-container">
-            <div class="heading-hero">
-                <h1>Your Shopping List</h1>
-                <p>Manage items, track spending, stay within budget</p>
-            </div>
-            <div class="heading-budget-limit">
-                    <p class="budget-text">BUDGET LIMIT :</p>
-                    <p id="budget-text" class="budget-amount">Rs 0</p>
-                    <span id="budget-warning-percentage" class="budget-warning">0</span>
-            </div>
-        </div>
-        
-      </section>
-      <!-- MAIN SECTION -->
-      <main>
-        <div class="main-container">
-        <!-- LEFT PANEL -->
-        <section class="left-section">
-            <div class="left-panel">
-            <div class="add-item">
-                <h3>ADD NEW ITEM</h3>
-                <div class="item-details">
-                    <label for="item-name">ITEM NAME</label>
-                    <input type="text" name="item" id="item-name" placeholder="e.g. Milk, Shampo,T-Shirt...">
-                </div>
-                <div class="item-details">
-                    <label for="item-quantity">QUANTITY</label>
-                    <input type="number" name="quantity" id="item-quantity" placeholder="Qty e.g.2">
-                <div class="item-details">
-                    <label for="item-price">PRICE</label>
-                    <input type="number" name="price" id="item-price" placeholder="Price e.g.250">
-                
-                </div> 
-                 <div class="item-details">
-                    <label for="item-price">Set Budget</label>
-                    <input type="number" name="budget" id="budget-limit" placeholder="Rs 4000">
-                
-                </div>                    
-                    </div>
-                <div class="item-details">
-                        <p>CATEGORY </p>
-                            <div class="category-button">
-                                <button  value="all" class="btn btn-primary btn-category">All</button>
-                                <button  value="grocery" class="btn btn-primary btn-category">🥕Grocery</button>
-                                <button  value="home" class="btn btn-primary btn-category">🏠Home</button>
-                                <button  value="clothing" class="btn btn-primary btn-category">🥼Clothing</button>
-                                <button  value="health" class="btn btn-primary btn-category">💊Health</button>
-                                <button  value="electronics" class="btn btn-primary btn-category">⚡Electronics</button>
-                            </div>
-                </div>
-                <div class="button-container">
-                    <button class="btn btn-secondary" id="addtolist">➕ADD TO LIST</button>
-                </div>
-            </div>
-            
-            <div class="search-item">
-                <h3>SEARCH & FILTER</h3>
-                <div class="search-filter-item">
-                    <input type="text" name="searched" id="search-item-name" placeholder="🔍 Search items by name...">
-                </div>
-                <!-- DROP DOWN LIST -->
-                <div class="search-item-list">
-                    <select class="dropdown" name="sort" id="sort-dropdown">
-                        <option disabled selected value="">Sort By</option>
-                        <option value="name">Name</option>
-                        <option value="price">Price</option>
-                        <option value="category">Category</option>
 
-                    </select>
+    <div class="tear"></div>
 
-                                        <div class="search-button">
-                        <button id="search-item-btn" class="btn btn-secondary">🔍Search</button>
-                    </div>    
-                </div>
-            </div>
-            <div class="quick-stats">
-                <h3>QUICK STATS</h3>
-                    <p class="stat-row">
-                        <span class="stat-key">Total Items</span>
-                        <span id="total-text" class="stat-value">0</span>
-                    </p>
+    <!-- BUDGET -->
+    <div class="receipt-block">
+      <div class="budget-row">
+        <div>
+          <p class="line-label">Budget</p>
+          <p class="budget-figure" id="budgetFigure">Not set</p>
+        </div>
+        <button class="link-btn" id="editBudgetBtn" type="button">Edit</button>
+      </div>
 
-                    <p class="stat-row">
-                        <span class="stat-key">Bought</span>
-                        <span id="bought-text" class="stat-value">0</span>
-                    </p>
+      <form id="budgetForm" class="budget-form hidden">
+        <span class="input-prefix">Rs</span>
+        <input type="number" id="budgetInput" min="0" step="1" placeholder="4000" inputmode="decimal">
+        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+      </form>
 
-                    <p class="stat-row">
-                        <span class="stat-key">Remaining</span>
-                        <span id="remaining-text" class="stat-value">0</span>
-                    </p>
-                    <p class="stat-row">
-                        <span class="bold-key">Total Bill</span>
-                        <span id="total-bill-text" class="bold-stat">Rs 0</span>
-                    </p>
-            </div>
-        </div>
-        </section>
-        
-        <!-- RIGHT PANEL -->
-         <section>
-        <div class="right-panel">
-            <div class="heading-right-panel">
-                <div class="heading">
-                    <h3>Your Shopping List</h3>
-                </div>
-                <div class="small-buttons">
-                    <button class="btn btn-tertiary">Sort All</button>
-                    <button class="btn btn-tertiary">Clear Bought</button>
-                </div>
-            </div>
-            <div class="table-container">
-                <table id="table-of-items">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                           
-                    </tbody>
-                </table>
-            </div>   
-        
-        <div class="summary-card">
-            <div class="card card-1">
-                <h3>Total Bill</h3>
-                <p><span id="total-amount">0</span></p>
-                <p>Out of Rs 0</p>
-
-            </div>
-          <div class="card card-2">
-            <h3>Most Expensive</h3>
-            <p><span id="most-expensive-price">Rs 0</span></p>
-            <p id="most-expensive-name">No items yet</p>
-        </div>
-        <div class="card card-2">
-            <h3>Cheapest Item</h3>
-            <p><span id="cheapest-price">Rs 0</span></p>
-            <p id="cheapest-name">No items yet</p>
-        </div>
-        <div class="card card-2">
-            <h3>Item Bought</h3>
-            <p><span id="bought-count-card">0</span></p>
-            <p id="pending-count-card">0 still pending</p>
-        </div>
-        </div>
-        <div class="progress-bar-div">
-            <p class="bar-heading">
-                <span>📊BUDGET USED</span>
-                <span id="budget-used-text">0% used</span>
-            </p>
-            <div class="progress-track">
-                <div class="progress-fill" id="progress-bar"></div>
-            </div>
-            <p class="bottom-bar">
-                <span>Rs 0</span>
-                <span>Warning at 0</span>
-                <span>Limit</span>
-            </p>
-        </div>
+      <div class="budget-track">
+        <div class="budget-fill" id="budgetFill"></div>
+      </div>
+      <div class="budget-caption">
+        <span id="spentLabel">Rs 0 spent</span>
+        <span id="budgetNote">Set a budget to track it</span>
+      </div>
     </div>
-         </section>
+
+    <div class="tear"></div>
+
+    <!-- ADD ITEM -->
+    <div class="receipt-block">
+      <p class="line-label">Add item</p>
+      <form id="itemForm" class="item-form" novalidate>
+        <div class="item-form-row">
+          <input type="text" id="itemName" placeholder="Item name — e.g. Milk" maxlength="30" autocomplete="off">
+          <input type="number" id="itemQty" placeholder="Qty" min="1" step="1" inputmode="numeric">
+          <input type="number" id="itemPrice" placeholder="Price" min="0" step="0.01" inputmode="decimal">
+        </div>
+
+        <div class="chip-row" id="categoryChips">
+          <button type="button" class="chip" data-cat="grocery">🥕 Grocery</button>
+          <button type="button" class="chip" data-cat="home">🏠 Home</button>
+          <button type="button" class="chip" data-cat="clothing">🥼 Clothing</button>
+          <button type="button" class="chip" data-cat="health">💊 Health</button>
+          <button type="button" class="chip" data-cat="electronics">⚡ Electronics</button>
+        </div>
+
+        <p class="form-error hidden" id="formError">Add a name, quantity, price, and pick a category.</p>
+        <button type="submit" class="btn btn-primary btn-block">＋ Add to list</button>
+      </form>
     </div>
-      </main>
-      <script src="app.js"></script>
+
+    <div class="tear"></div>
+
+    <!-- SEARCH / FILTER / SORT -->
+    <div class="receipt-block controls-block">
+      <div class="search-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="searchInput" placeholder="Search your list">
+      </div>
+      <select id="sortSelect" aria-label="Sort items">
+        <option value="none">Sort: default</option>
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+        <option value="category">Category</option>
+      </select>
+      <div class="chip-row" id="filterChips">
+        <button type="button" class="chip filter-chip is-active" data-filter="all">All</button>
+        <button type="button" class="chip filter-chip" data-filter="grocery">🥕 Grocery</button>
+        <button type="button" class="chip filter-chip" data-filter="home">🏠 Home</button>
+        <button type="button" class="chip filter-chip" data-filter="clothing">🥼 Clothing</button>
+        <button type="button" class="chip filter-chip" data-filter="health">💊 Health</button>
+        <button type="button" class="chip filter-chip" data-filter="electronics">⚡ Electronics</button>
+      </div>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- ITEM LIST -->
+    <div class="receipt-block">
+      <div class="list-head">
+        <p class="line-label" id="listCount">0 items</p>
+        <button class="link-btn" id="clearBoughtBtn" type="button">Clear bought</button>
+      </div>
+
+      <ul class="item-list" id="itemList" hidden></ul>
+
+      <div class="empty-state" id="emptyState">
+        <p class="empty-glyph">🛒</p>
+        <p class="empty-title">Your list is empty</p>
+        <p class="empty-sub">Add an item above to get started.</p>
+      </div>
+
+      <div class="empty-state hidden" id="noResults">
+        <p class="empty-glyph">🔍</p>
+        <p class="empty-title">No matches</p>
+        <p class="empty-sub">Try a different search or filter.</p>
+      </div>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- SUMMARY -->
+    <div class="receipt-block summary-block">
+      <p class="line-label">Summary</p>
+      <div class="summary-line"><span>Total items</span><span id="statTotal">0</span></div>
+      <div class="summary-line"><span>Bought</span><span id="statBought">0</span></div>
+      <div class="summary-line"><span>Pending</span><span id="statPending">0</span></div>
+      <div class="summary-line"><span>Most expensive</span><span id="statMostExpensive">—</span></div>
+      <div class="summary-line"><span>Cheapest</span><span id="statCheapest">—</span></div>
+      <div class="summary-line summary-total"><span>Spent so far</span><span id="statSpent">Rs 0</span></div>
+      <div class="summary-line"><span>Full list value</span><span id="statEstimate">Rs 0</span></div>
+    </div>
+
+    <div class="perforation" aria-hidden="true"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Developed by <span class="brand-accent">Asfandyar</span> — IT student &amp; web developer</p>
+</footer>
+
+<!-- TOAST -->
+<div class="toast hidden" id="toast" role="status" aria-live="polite">
+  <span id="toastMsg"></span>
+  <button id="toastUndo" class="toast-undo hidden" type="button">Undo</button>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
