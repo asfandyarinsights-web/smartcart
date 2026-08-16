@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartCart — Settings</title>
+<script>
+  // Applied before paint so the page doesn't flash the wrong theme.
+  try {
+    var s = JSON.parse(localStorage.getItem("smartcart:settings"));
+    if (s && s.theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <h1 class="logo">🛒 Smart<span>Cart</span></h1>
+    <nav>
+      <ul>
+        <li><a class="navlink" href="index.html">Home</a></li>
+        <li><a class="navlink" href="history.html">History</a></li>
+        <li><a class="navlink is-active" href="#">Setting</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="receipt">
+
+    <div class="receipt-head">
+      <p class="receipt-title">Settings</p>
+      <p class="receipt-sub">Tune how SmartCart looks and behaves</p>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- APPEARANCE -->
+    <div class="receipt-block">
+      <p class="line-label">Appearance</p>
+
+      <div class="settings-row">
+        <div class="settings-copy">
+          <p class="settings-label">Theme</p>
+          <p class="settings-hint">Switch between light and dark paper.</p>
+        </div>
+        <div class="theme-switch" id="themeSwitch">
+          <button type="button" class="theme-option" data-theme="light">Light</button>
+          <button type="button" class="theme-option" data-theme="dark">Dark</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- BUDGET & CURRENCY -->
+    <div class="receipt-block">
+      <p class="line-label">Budget &amp; currency</p>
+
+      <div class="settings-row">
+        <div class="settings-copy">
+          <p class="settings-label">Currency symbol</p>
+          <p class="settings-hint">Shown next to every price and total.</p>
+        </div>
+        <select id="currencySelect">
+          <option value="Rs">Rs — Pakistani Rupee</option>
+          <option value="$">$ — US Dollar</option>
+          <option value="€">€ — Euro</option>
+          <option value="£">£ — British Pound</option>
+          <option value="₹">₹ — Indian Rupee</option>
+        </select>
+      </div>
+
+      <div class="settings-row">
+        <div class="settings-copy">
+          <p class="settings-label">Budget warning threshold</p>
+          <p class="settings-hint">The budget bar turns amber past this percentage.</p>
+        </div>
+        <input type="number" id="warnInput" min="10" max="99" step="5">
+      </div>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- DATA -->
+    <div class="receipt-block">
+      <p class="line-label">Your data</p>
+      <p class="settings-hint" style="margin-bottom:12px;">
+        Items, budget, and history all live only in this browser — nothing is sent anywhere.
+      </p>
+
+      <div class="data-actions">
+        <button type="button" class="btn btn-outline" id="exportBtn">⬇ Export backup</button>
+        <button type="button" class="btn btn-outline" id="importBtn">⬆ Import backup</button>
+        <input type="file" id="importFile" accept="application/json" hidden>
+        <button type="button" class="btn btn-danger-outline" id="clearDataBtn">🗑 Clear all data</button>
+      </div>
+
+      <div class="confirm-strip hidden" id="clearConfirm">
+        <p>This deletes your list, budget, and history for good. Are you sure?</p>
+        <div class="actions">
+          <button type="button" class="btn btn-outline btn-sm" id="clearCancel">Cancel</button>
+          <button type="button" class="btn btn-danger btn-sm" id="clearConfirmBtn">Yes, clear everything</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- ABOUT -->
+    <div class="receipt-block about-block">
+      <p class="line-label">About</p>
+      <p style="margin-top:8px;">SmartCart is a lightweight shopping list and budget tracker built with vanilla HTML, CSS, and JavaScript — no frameworks, no backend.</p>
+      <p style="margin-top:6px;">Built by Asfandyar, IT student &amp; web developer.</p>
+    </div>
+
+    <div class="perforation" aria-hidden="true"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Developed by <span class="brand-accent">Asfandyar</span> — IT student &amp; web developer</p>
+</footer>
+
+<div class="toast hidden" id="toast" role="status" aria-live="polite">
+  <span id="toastMsg"></span>
+  <button id="toastUndo" class="toast-undo hidden" type="button">Undo</button>
+</div>
+
+<script src="settings.js"></script>
+</body>
+</html>
