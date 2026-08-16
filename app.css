@@ -354,3 +354,50 @@ input:focus, select:focus, button:focus-visible{
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
 }
+
+/* ---------- DESKTOP LAYOUT (index page only, via .wrap-wide) ----------
+   Below 900px: identical single-column receipt, untouched.
+   Above 900px: same blocks rearranged into a 2-column grid —
+   left column = actions (budget, add item, controls),
+   right column = content (item list, summary) — using grid-area
+   placement so the HTML order (and mobile layout) doesn't change. */
+@media (min-width: 900px){
+  .wrap-wide{ max-width:1040px; }
+
+  .wrap-wide .receipt{
+    display:grid;
+    grid-template-columns: minmax(300px, 380px) 1fr;
+    grid-template-areas:
+      "head     head"
+      "budget   list"
+      "additem  list"
+      "controls list"
+      "controls summary";
+    align-items:start;
+  }
+
+  .wrap-wide .receipt > .tear{ display:none; }
+
+  .wrap-wide .receipt-head{ grid-area:head; border-bottom:1px dashed var(--line); }
+  .wrap-wide .budget-block{ grid-area:budget; }
+  .wrap-wide .additem-block{ grid-area:additem; }
+  .wrap-wide .controls-block{ grid-area:controls; }
+  .wrap-wide .list-block{ grid-area:list; }
+  .wrap-wide .summary-block{ grid-area:summary; }
+
+  /* left column: dashed divider standing in for the removed tear lines */
+  .wrap-wide .budget-block,
+  .wrap-wide .additem-block,
+  .wrap-wide .controls-block{
+    border-right:1px dashed var(--line);
+    border-bottom:1px dashed var(--line);
+    padding-right:28px;
+  }
+  .wrap-wide .list-block,
+  .wrap-wide .summary-block{
+    padding-left:28px;
+    border-bottom:1px dashed var(--line);
+  }
+
+  .wrap-wide .perforation{ grid-column:1 / -1; }
+}
