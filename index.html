@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SmartCart</title>
+<script>
+  try {
+    var s = JSON.parse(localStorage.getItem("smartcart:settings"));
+    if (s && s.theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +24,7 @@
       <ul>
         <li><a class="navlink is-active" href="#">Home</a></li>
         <li><a class="navlink" href="history.html">History</a></li>
-        <li><a class="navlink" href="#">Setting</a></li>
+        <li><a class="navlink" href="settings.html">Setting</a></li>
       </ul>
     </nav>
   </div>
