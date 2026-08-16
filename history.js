@@ -1,5 +1,7 @@
 // ---------- CONSTANTS ----------
 const HISTORY_KEY = "smartcart:history";
+const SETTINGS_KEY = "smartcart:settings";
+const DEFAULT_SETTINGS = { theme: "light", currency: "Rs", budgetWarnAt: 80 };
 
 const CATEGORY_LABEL = {
   grocery: "🥕 Grocery",
@@ -8,6 +10,10 @@ const CATEGORY_LABEL = {
   health: "💊 Health",
   electronics: "⚡ Electronics",
 };
+
+// ---------- SETTINGS ----------
+const settings = { ...DEFAULT_SETTINGS, ...loadJSON(SETTINGS_KEY, {}) };
+document.documentElement.setAttribute("data-theme", settings.theme === "dark" ? "dark" : "light");
 
 // ---------- STATE ----------
 let history = loadJSON(HISTORY_KEY, []);
@@ -50,7 +56,7 @@ function saveJSON(key, value) {
 
 // ---------- FORMAT ----------
 function money(n) {
-  return `Rs ${Math.round(n).toLocaleString()}`;
+  return `${settings.currency} ${Math.round(n).toLocaleString()}`;
 }
 function escapeHtml(str) {
   const div = document.createElement("div");
