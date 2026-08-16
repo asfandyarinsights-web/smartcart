@@ -1,11 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartCart — History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <h1>History Page</h1>
+
+<header class="topbar">
+  <div class="wrap topbar-row">
+    <h1 class="logo">🛒 Smart<span>Cart</span></h1>
+    <nav>
+      <ul>
+        <li><a class="navlink" href="index.html">Home</a></li>
+        <li><a class="navlink is-active" href="#">History</a></li>
+        <li><a class="navlink" href="#">Setting</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="receipt">
+
+    <div class="receipt-head">
+      <p class="receipt-title">Purchase History</p>
+      <p class="receipt-sub">Every trip you've completed, itemized</p>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- LIFETIME SUMMARY -->
+    <div class="receipt-block summary-block">
+      <p class="line-label">Lifetime</p>
+      <div class="summary-line"><span>Trips completed</span><span id="statTrips">0</span></div>
+      <div class="summary-line"><span>Items bought</span><span id="statItems">0</span></div>
+      <div class="summary-line"><span>Average trip</span><span id="statAverage">Rs 0</span></div>
+      <div class="summary-line summary-total"><span>Total spent</span><span id="statLifetime">Rs 0</span></div>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- SEARCH / SORT -->
+    <div class="receipt-block controls-block">
+      <div class="search-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="searchInput" placeholder="Search past items">
+      </div>
+      <select id="sortSelect" aria-label="Sort trips">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="highest">Highest total</option>
+        <option value="lowest">Lowest total</option>
+      </select>
+    </div>
+
+    <div class="tear"></div>
+
+    <!-- TRIP LIST -->
+    <div class="receipt-block">
+      <div class="list-head">
+        <p class="line-label" id="tripCount">0 trips</p>
+        <button class="link-btn" id="clearHistoryBtn" type="button">Clear history</button>
+      </div>
+
+      <div id="tripList"></div>
+
+      <div class="empty-state" id="emptyState">
+        <p class="empty-glyph">🧾</p>
+        <p class="empty-title">No trips logged yet</p>
+        <p class="empty-sub">Check off items on your list, then tap "Clear bought" to archive a trip here.</p>
+      </div>
+
+      <div class="empty-state hidden" id="noResults">
+        <p class="empty-glyph">🔍</p>
+        <p class="empty-title">No matches</p>
+        <p class="empty-sub">Try a different search.</p>
+      </div>
+    </div>
+
+    <div class="perforation" aria-hidden="true"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Developed by <span class="brand-accent">Asfandyar</span> — IT student &amp; web developer</p>
+</footer>
+
+<div class="toast hidden" id="toast" role="status" aria-live="polite">
+  <span id="toastMsg"></span>
+  <button id="toastUndo" class="toast-undo hidden" type="button">Undo</button>
+</div>
+
+<script src="history.js"></script>
 </body>
 </html>
