@@ -34,6 +34,19 @@
   --sans:'Work Sans', system-ui, sans-serif;
 }
 
+[data-theme="dark"]{
+  --paper:#1C1914;
+  --paper-2:#26221B;
+  --ink:#F0E9DA;
+  --ink-muted:#9C9280;
+  --line:#3A342A;
+  --green-tint:#1E332A;
+  --amber-tint:#3A2E1A;
+  --red-tint:#3A211E;
+}
+
+[data-theme="dark"] body{ background:#0E0D0B; background-image: radial-gradient(circle at 50% 0%, #17150F, #0E0D0B 80%); }
+
 *{ margin:0; padding:0; box-sizing:border-box; }
 
 body{
@@ -278,6 +291,43 @@ input:focus, select:focus, button:focus-visible{
 }
 .trip-item-meta{ font-size:12px; color: var(--ink-muted); }
 .trip-item-sub{ font-family: var(--mono); flex-shrink:0; white-space:nowrap; }
+
+/* ---------- SETTINGS PAGE ---------- */
+.settings-row{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:14px 0; border-bottom:1px dashed var(--line);
+}
+.settings-row:last-child{ border-bottom:none; }
+.settings-copy{ min-width:0; }
+.settings-label{ font-weight:600; font-size:14px; }
+.settings-hint{ font-size:12px; color: var(--ink-muted); margin-top:2px; }
+.settings-row select, .settings-row input[type="number"]{ width:auto; min-width:110px; }
+
+.theme-switch{ display:flex; gap:6px; background: var(--paper-2); border:1px solid var(--line); border-radius:999px; padding:3px; flex-shrink:0; }
+.theme-option{
+  border:none; background:none; padding:7px 14px; border-radius:999px; font-size:13px; font-weight:600;
+  color: var(--ink-muted); cursor:pointer;
+}
+.theme-option.is-active{ background: var(--ink); color: var(--paper); }
+
+.data-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+.btn-outline{ background: var(--paper-2); border:1px solid var(--line); color: var(--ink); }
+.btn-outline:hover{ border-color: var(--green); color: var(--green); }
+.btn-danger-outline{ background: var(--paper-2); border:1px solid var(--red); color: var(--red); }
+.btn-danger-outline:hover{ background: var(--red-tint); }
+.btn-danger{ background: var(--red); color:#fff; }
+.btn-danger:hover{ opacity:0.9; }
+
+.confirm-strip{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background: var(--red-tint); border:1px solid var(--red); border-radius:8px;
+  padding:12px 14px; margin-top:12px;
+}
+.confirm-strip p{ font-size:13px; color: var(--ink); }
+.confirm-strip .actions{ display:flex; gap:8px; flex-shrink:0; }
+
+.about-block p{ font-size:13px; color: var(--ink-muted); line-height:1.6; }
+.about-block a{ color: var(--green); }
 
 /* ---------- FOOTER ---------- */
 .site-footer{
