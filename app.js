@@ -2,6 +2,8 @@
 const ITEMS_KEY = "smartcart:items";
 const BUDGET_KEY = "smartcart:budget";
 const HISTORY_KEY = "smartcart:history";
+const SETTINGS_KEY = "smartcart:settings";
+const DEFAULT_SETTINGS = { theme: "light", currency: "Rs", budgetWarnAt: 80 };
 
 const CATEGORY_LABEL = {
   grocery: "🥕 Grocery",
@@ -10,6 +12,10 @@ const CATEGORY_LABEL = {
   health: "💊 Health",
   electronics: "⚡ Electronics",
 };
+
+// ---------- SETTINGS ----------
+const settings = { ...DEFAULT_SETTINGS, ...loadJSON(SETTINGS_KEY, {}) };
+document.documentElement.setAttribute("data-theme", settings.theme === "dark" ? "dark" : "light");
 
 // ---------- STATE ----------
 let items = loadJSON(ITEMS_KEY, []);
@@ -74,7 +80,7 @@ function saveJSON(key, value) {
 
 // ---------- FORMAT ----------
 function money(n) {
-  return `Rs ${Math.round(n).toLocaleString()}`;
+  return `${settings.currency} ${Math.round(n).toLocaleString()}`;
 }
 function escapeHtml(str) {
   const div = document.createElement("div");
@@ -271,7 +277,7 @@ function renderBudget(stats) {
   budgetFigure.textContent = money(budget);
   const pct = Math.min((stats.spent / budget) * 100, 100);
   budgetFill.style.width = `${pct}%`;
-  budgetFill.className = "budget-fill" + (stats.spent > budget ? " is-over" : pct >= 80 ? " is-warn" : "");
+  budgetFill.className = "budget-fill" + (stats.spent > budget ? " is-over" : pct >= settings.budgetWarnAt ? " is-warn" : "");
 
   spentLabel.textContent = `${money(stats.spent)} spent`;
   if (stats.spent > budget) {
